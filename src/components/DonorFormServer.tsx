@@ -36,7 +36,7 @@ export function DonorFormServer() {
   return (
     <Box component="form" action={handleSubmit} id="donation-form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <TextField
-        label="Valor (R$)"
+        label="Valor (Kz$)"
         type="number"
         name="amount"
         required

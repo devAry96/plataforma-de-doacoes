@@ -19,7 +19,7 @@ import Link from 'next/link';
 
 // Schema de validação
 const donationSchema = z.object({
-  amount: z.number().min(1, 'Valor deve ser maior que R$ 1,00').max(100000, 'Valor máximo é R$ 100.000,00'),
+  amount: z.number().min(1, 'Valor deve ser maior que Kz$ 1,00').max(100000, 'Valor máximo é Kz$ 100.000,00'),
   message: z.string().max(500, 'Mensagem deve ter no máximo 500 caracteres').optional(),
   anonymous: z.boolean()
 });
@@ -132,7 +132,7 @@ export function DonorForm() {
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 }, width: '100%', maxWidth: 400, mx: 'auto', p: { xs: 1, sm: 2 } }}>
       <TextField
-        label="Valor (R$)"
+        label="Valor (Kz$)"
         type="number"
         name="amount"
         value={formData.amount}

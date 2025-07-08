@@ -7,7 +7,7 @@ import { prisma } from './prisma'
 
 // Schema de validação para doação
 const donationSchema = z.object({
-  amount: z.number().min(1, 'Valor deve ser maior que zero').max(100000, 'Valor máximo é R$ 100.000,00'),
+  amount: z.number().min(1, 'Valor deve ser maior que zero').max(100000, 'Valor máximo é Kz$ 100.000,00'),
   message: z.string().max(500, 'Mensagem deve ter no máximo 500 caracteres').optional(),
   anonymous: z.boolean().default(false)
 })

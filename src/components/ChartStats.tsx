@@ -114,7 +114,7 @@ export default function ChartStats() {
               <XAxis dataKey="month" />
               <YAxis />
               <Tooltip 
-                formatter={(value: number) => [`R$ ${value.toFixed(2)}`, 'Valor']}
+                formatter={(value: number) => [`Kz$ ${value.toFixed(2)}`, 'Valor']}
                 labelFormatter={(label) => `Mês: ${label}`}
               />
               <Line 
@@ -169,7 +169,7 @@ export default function ChartStats() {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="h4" color="success.main" fontWeight="bold" sx={{ fontSize: { xs: '1.1rem', sm: '1.5rem' } }}>
-                R$ {stats.totalAmount.toFixed(2)}
+                Kz$ {stats.totalAmount.toFixed(2)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Valor Total Arrecadado
