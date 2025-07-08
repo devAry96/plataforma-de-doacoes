@@ -11,6 +11,7 @@ Uma plataforma moderna para gerenciamento de doações construída com Next.js, 
 - ✅ Interface responsiva com Material-UI
 - ✅ Banco de dados SQLite com Prisma
 - ✅ API RESTful com validação Zod
+- ✅ Integração com Axios para consumo da API
 - ✅ Paginação de resultados
 - ✅ Tratamento de erros robusto
 
@@ -19,10 +20,11 @@ Uma plataforma moderna para gerenciamento de doações construída com Next.js, 
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **UI**: Material-UI (MUI), Recharts
 - **Backend**: Next.js API Routes
+- **HTTP Client**: Axios para integração com APIs internas e externas
 - **Database**: SQLite com Prisma ORM
 - **Authentication**: NextAuth.js
 - **Validation**: Zod
-- **Styling**: Tailwind CSS
+- **Styling**: customizações com MUI 
 
 ## 📋 Pré-requisitos
 
@@ -33,8 +35,8 @@ Uma plataforma moderna para gerenciamento de doações construída com Next.js, 
 
 1. **Clone o repositório**
    ```bash
-   git clone <repository-url>
-   cd webdev
+   git clone [https://github.com/devAry96/plataforma-de-doacoes.git](https://github.com/devAry96/plataforma-de-doacoes.git)
+   cd plataforma-de-doacoes-main
    ```
 
 2. **Instale as dependências**
@@ -81,18 +83,53 @@ Uma plataforma moderna para gerenciamento de doações construída com Next.js, 
 ## 📁 Estrutura do Projeto
 
 ```
-src/
-├── app/                    # App Router (Next.js 13+)
-│   ├── api/               # API Routes
-│   ├── dashboard/         # Página do dashboard
-│   ├── donations/         # Página de doações
-│   └── profile/           # Página de perfil
-├── components/            # Componentes React
-├── domain/               # Entidades de domínio
-├── application/          # Casos de uso
-├── infrastructure/       # Repositórios e adaptadores
-├── presentation/         # Controllers
-└── lib/                  # Utilitários e configurações
+webdev/
+├── src/
+│   ├── app/
+│   │   ├── api/                # API Routes: Rotas de API do Next.js (ex: autenticação)
+│   │   │   └── auth/
+│   │   │       └── [...nextauth].ts
+│   │   ├── auth/
+│   │   │   ├── signin/         # Página de login
+│   │   │   │   └── page.tsx
+│   │   │   └── signout/        # Página de logout
+│   │   │       └── page.tsx
+│   │   ├── profile/            # Página de perfil do usuário
+│   │   │   └── page.tsx
+│   │   ├── dashboard/          # Página principal do usuário logado
+│   │   │   └── page.tsx
+│   │   └── layout.tsx          # Layout global da aplicação
+│   ├── domain/
+│   │   └── entities/           # Entidades de domínio (ex: User, Donation)
+│   │       ├── User.ts
+│   │       └── Donation.ts
+│   ├── application/
+│   │   └── useCases/           # Casos de uso (lógica de negócio)
+│   │       ├── CreateDonationUseCase.ts
+│   │       └── GetDonationsUseCase.ts
+│   ├── infra/
+│   │   ├── axios/
+│   │   │   └── api.ts          # Configuração do Axios para chamadas HTTP
+│   │   ├── prisma/
+│   │   │   └── prisma.ts       # Instância do Prisma Client
+│   │   └── repositories/       # Repositórios e acesso a dados
+│   │       ├── PrismaDonationRepository.ts
+│   │       └── PrismaUserRepository.ts
+│   ├── presentation/
+│   │   └── controllers/        # Controllers: lógica de entrada/saída das rotas
+│   │       └── DonationController.ts
+│   ├── shared/
+│   │   ├── components/         # Componentes compartilhados (Navbar, Footer, etc)
+│   │   │   ├── ChartStats.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── PlanGuard.tsx
+│   │   │   └── ToastProvider.tsx
+│   │   └── utils/              # Utilitários compartilhados
+│   │       └── auth.ts
+│   └── lib/
+│       └── auth.ts             # Configurações e helpers de autenticação                 # Utilitários e configurações
 ```
 
 ## 🔐 Autenticação
@@ -204,58 +241,3 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 ## 🆘 Suporte
 
 Se você encontrar algum problema ou tiver dúvidas, abra uma issue no repositório.
-
-📋 Resumo das Correções Implementadas
-✅ Problemas Corrigidos:
-1. Validação e Segurança
-✅ Adicionada validação com Zod no formulário de doações
-✅ Implementada validação no controller de doações
-✅ Melhorado o sistema de autenticação com NextAuth.js
-✅ Adicionados headers de segurança no middleware
-✅ Implementado tratamento de erros robusto
-2. Performance e UX
-✅ Implementada paginação nas APIs
-✅ Adicionados loading states em todos os componentes
-✅ Melhorado feedback visual para ações do usuário
-✅ Implementado sistema de refresh nos componentes
-✅ Adicionadas mensagens de erro claras
-3. Arquitetura e Código
-✅ Corrigida estrutura de pastas duplicadas
-✅ Implementada Clean Architecture consistente
-✅ Adicionada tipagem TypeScript completa
-✅ Melhorada separação de responsabilidades
-✅ Implementado Repository pattern corretamente
-4. Dados e APIs
-✅ Criada API de estatísticas em tempo real
-✅ Substituídos dados estáticos por dados dinâmicos
-✅ Implementada paginação nas listagens
-✅ Melhorada estrutura de resposta das APIs
-5. Componentes
-✅ DonorForm: Validação completa, tratamento de erros, feedback visual
-✅ ChartStats: Dados reais, loading states, tratamento de erros
-✅ DonationCard: Paginação, refresh, formatação de datas
-✅ Layout: Melhor estrutura e responsividade
-6. Documentação
-✅ README completo com instruções detalhadas
-✅ Documentação de APIs e endpoints
-✅ Guia de configuração e deploy
-✅ Solução de problemas comuns
-🔧 Melhorias Técnicas:
-Validação Zod: Implementada em formulários e APIs
-Error Boundaries: Tratamento robusto de erros
-Loading States: Feedback visual durante carregamentos
-Pagination: Sistema de paginação eficiente
-Security Headers: Headers de segurança no middleware
-TypeScript: Tipagem completa e consistente
-Clean Architecture: Separação clara de responsabilidades
-�� APIs Criadas/Modificadas:
-GET /api/donations - Lista paginada de doações
-POST /api/donations - Criação com validação
-GET /api/donations/stats - Estatísticas em tempo real
-🎯 Próximos Passos Recomendados:
-Produção: Configurar banco PostgreSQL/MySQL
-Segurança: Implementar hash de senhas (bcrypt)
-Monitoramento: Adicionar logging e métricas
-Testes: Implementar testes unitários e E2E
-Deploy: Configurar CI/CD e deploy automatizado
-O projeto agora está muito mais robusto, seguro e pronto para produção! 🚀
