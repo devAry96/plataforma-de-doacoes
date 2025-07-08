@@ -1,0 +1,120 @@
+// src/components/carrosselDoacao.tsx
+
+"use client";
+import React, { useState } from "react";
+import { Grid, Paper, Typography, IconButton, Box } from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+const slides = [
+  {
+    img: "/ilustracao-de-doacao-de-roupas_23-2148849867.avif",
+    title: "Apoio a Projetos Inovadores",
+    desc: "A fundação apoia projetos inovadores que criam impacto positivo nas comunidades locais.",
+  },
+  {
+    img: "/istockphoto-1436319269-612x612.jpg",
+    title: "O Poder da Colaboração",
+    desc: "Juntos, podemos fazer mais! Cada contribuição faz a diferença na construção de um futuro melhor.",
+  },
+  {
+    img: "/conceito-de-doacao-de-roupas-para-ilustracao-plana.avif",
+    title: "Investindo no Futuro",
+    desc: "Doações que ajudam a financiar iniciativas que buscam um impacto sustentável a longo prazo.",
+  },
+  {
+    img: "/conceito-de-doacao-de-roupas-de-design-plano_23-2148812828.avif",
+    title: "Empoderamento Comunitário",
+    desc: "Apoie iniciativas que promovem o crescimento e a educação dentro das comunidades.",
+  },
+];
+
+export default function CarrosselDoacao() {
+  const [index, setIndex] = useState(0);
+
+  const handlePrev = () => setIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const handleNext = () => setIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+
+  return (
+    <Grid item xs={12} lg={6}>
+      <Paper elevation={3} sx={{ p: { xs: 1, sm: 2 }, borderRadius: 2 }}>
+        <Box sx={{ position: "relative", minHeight: 320 }}>
+          {/* Slide */}
+          <Box>
+            <img
+              src={slides[index].img}
+              alt={slides[index].title}
+              style={{ width: "100%", borderRadius: 8, objectFit: "cover", minHeight: 180 }}
+            />
+            <Typography variant="h6" sx={{ mt: 2 }}>
+              {slides[index].title}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: "0.95rem", sm: "1rem" },
+                color: "text.secondary",
+              }}
+            >
+              {slides[index].desc}
+            </Typography>
+          </Box>
+          {/* Navegação */}
+          <IconButton
+            aria-label="slide anterior"
+            onClick={handlePrev}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: 0,
+              transform: "translateY(-50%)",
+              bgcolor: "background.paper",
+              boxShadow: 1,
+              "&:hover": { bgcolor: "grey.200" },
+            }}
+          >
+            <ArrowBackIosNewIcon />
+          </IconButton>
+          <IconButton
+            aria-label="próximo slide"
+            onClick={handleNext}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              right: 0,
+              transform: "translateY(-50%)",
+              bgcolor: "background.paper",
+              boxShadow: 1,
+              "&:hover": { bgcolor: "grey.200" },
+            }}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+          {/* Indicadores */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: 2,
+              gap: 1,
+            }}
+          >
+            {slides.map((_, i) => (
+              <Box
+                key={i}
+                sx={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  bgcolor: i === index ? "primary.main" : "grey.400",
+                  transition: "background 0.3s",
+                  cursor: "pointer",
+                }}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </Box>
+        </Box>
+      </Paper>
+    </Grid>
+  );
+}
