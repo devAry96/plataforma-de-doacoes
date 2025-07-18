@@ -184,7 +184,7 @@ export function DonationCard() {
               </Box>
               <Box textAlign={{ xs: 'left', sm: 'right' }} mt={{ xs: 2, sm: 0 }}>
                 <Typography variant="h4" color="success.main" fontWeight="bold" sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' } }}>
-                  R$ {donation.amount.toFixed(2)}
+                  Kz {donation.amount.toFixed(2)}
                 </Typography>
                 <Chip
                   label={donation.anonymous ? "anônima" : "identificada"}

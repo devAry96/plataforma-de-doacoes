@@ -16,7 +16,7 @@ export default function DonationCard({ amount, message, anonymous, createdAt }: 
     <Card sx={{ minWidth: 250, mb: 2 }}>
       <CardContent>
         <Typography variant="h6" color="primary">
-          {anonymous ? 'Anonymous' : 'Donor'} donated ${amount.toFixed(2)}
+          {anonymous ? 'Anonymous' : 'Donor'} donated Kz {amount.toFixed(2)}
         </Typography>
         {message && (
           <Typography variant="body2" sx={{ mt: 1 }}>

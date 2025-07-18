@@ -132,7 +132,7 @@ export function DonorForm() {
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 }, width: '100%', maxWidth: 400, mx: 'auto', p: { xs: 1, sm: 2 } }}>
       <TextField
-        label="Valor (R$)"
+        label="Valor (Kz)"
         type="number"
         name="amount"
         value={formData.amount}
@@ -143,7 +143,7 @@ export function DonorForm() {
           step: 0.01,
           max: 100000
         }}
-        placeholder="Digite o valor"
+        placeholder="Digite o valor em Kz"
         fullWidth
         error={!!errors.amount}
         helperText={errors.amount}

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Grid, Paper, Typography, CircularProgress, Alert } from '@mui/material';
+import { Grid, Paper, Typography, CircularProgress, Alert, Box } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 
 interface DonationStats {
@@ -96,6 +96,12 @@ export default function ChartStats() {
     { month: 'Abr', amount: 0 },
     { month: 'Mai', amount: 0 },
     { month: 'Jun', amount: 0 },
+    { month: 'Jul', amount: 0 },
+    { month: 'Ago', amount: 0 },
+    { month: 'Set', amount: 0 },
+    { month: 'Out', amount: 0 },
+    { month: 'Nov', amount: 0 },
+    { month: 'Dez', amount: 0 },
   ];
 
   const anonymousData = stats.anonymousVsIdentified || [
@@ -104,17 +110,18 @@ export default function ChartStats() {
   ];
 
   return (
-    <Grid container spacing={{ xs: 2, sm: 3 }}>
-      <Grid item xs={12} md={6}>
-        <Paper elevation={4} sx={{ p: { xs: 1, sm: 2 }, borderRadius: 3 }}>
-          <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', sm: '1.2rem' } }}>Doações por Mês</Typography>
-          <ResponsiveContainer width="100%" height={250}>
+    <Grid container spacing={{ xs: 2, sm: 3 }} justifyContent="center" alignItems="flex-start">
+      <Grid item xs={12} md={8}>
+        <Box sx={{ width: '100%', maxWidth: 700, mx: 'auto', mb: 4 }}>
+          <Paper elevation={4} sx={{ width: '100%', minHeight: 400, p: { xs: 2, sm: 4 }, borderRadius: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.2rem', sm: '1.4rem' } }}>Doações por Mês</Typography>
+            <ResponsiveContainer width="100%" height={320}>
             <LineChart data={monthlyData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+                <XAxis dataKey="month" interval={0} tick={{ fontSize: 10, angle: -40, dy: 15 }} />
               <YAxis />
               <Tooltip 
-                formatter={(value: number) => [`R$ ${value.toFixed(2)}`, 'Valor']}
+                  formatter={(value: number) => [`Kz ${value.toFixed(2)}`, 'Valor']}
                 labelFormatter={(label) => `Mês: ${label}`}
               />
               <Line 
@@ -127,12 +134,12 @@ export default function ChartStats() {
             </LineChart>
           </ResponsiveContainer>
         </Paper>
+        </Box>
       </Grid>
-      
-      <Grid item xs={12} md={6}>
-        <Paper elevation={4} sx={{ p: { xs: 1, sm: 2 }, borderRadius: 3 }}>
-          <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', sm: '1.2rem' } }}>Anônimas vs Identificadas</Typography>
-          <ResponsiveContainer width="100%" height={250}>
+      <Grid item xs={12} md={8}>
+        <Paper elevation={4} sx={{ width: '100%', maxWidth: 700, minHeight: 400, p: { xs: 2, sm: 4 }, borderRadius: 3, mx: 'auto', mb: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.2rem', sm: '1.4rem' } }}>Anônimas vs Identificadas</Typography>
+          <ResponsiveContainer width="90%" height={320}>
             <PieChart>
               <Pie 
                 data={anonymousData} 
@@ -140,8 +147,9 @@ export default function ChartStats() {
                 nameKey="name" 
                 cx="50%" 
                 cy="50%" 
-                outerRadius={80} 
-                label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
+                outerRadius={110} 
+                label={({ name, percent }) => `${name} ${percent ? (percent * 100).toFixed(0) : 0}%`}
+                labelLine={true}
               >
                 {anonymousData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -152,11 +160,18 @@ export default function ChartStats() {
               />
             </PieChart>
           </ResponsiveContainer>
+          <Box display="flex" justifyContent="center" gap={4} mt={2} flexWrap="wrap">
+            {anonymousData.map((entry, index) => (
+              <Box key={entry.name} display="flex" alignItems="center" gap={1}>
+                <span style={{ width: 16, height: 16, borderRadius: 8, background: COLORS[index % COLORS.length], display: 'inline-block', marginRight: 6 }} />
+                <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>{entry.name} {((entry.value / (anonymousData[0].value + anonymousData[1].value)) * 100).toFixed(0)}%</Typography>
+              </Box>
+            ))}
+          </Box>
         </Paper>
       </Grid>
-
       <Grid item xs={12}>
-        <Paper elevation={4} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3 }}>
+        <Paper elevation={4} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3, maxWidth: 900, mx: 'auto' }}>
           <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', sm: '1.2rem' } }}>Resumo Geral</Typography>
           <Grid container spacing={{ xs: 1, sm: 2 }}>
             <Grid item xs={12} sm={4}>
@@ -169,7 +184,7 @@ export default function ChartStats() {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="h4" color="success.main" fontWeight="bold" sx={{ fontSize: { xs: '1.1rem', sm: '1.5rem' } }}>
-                R$ {stats.totalAmount.toFixed(2)}
+                Kz {stats.totalAmount.toFixed(2)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Valor Total Arrecadado

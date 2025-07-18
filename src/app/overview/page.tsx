@@ -21,19 +21,18 @@ import ChartStats from '@/components/ChartStats'
 export default function DashboardPage() {
   return (
     <Layout>
-      <Container maxWidth="lg" sx={{ py: { xs: 2, sm: 4 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 1, sm: 2, md: 4 } }}>
         <Box mb={{ xs: 3, sm: 4 }}>
-          <Typography variant="h3" component="h1" gutterBottom color="primary" sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
+          <Typography variant="h3" component="h1" gutterBottom color="primary" sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, wordBreak: 'break-word' }}>
             Painel de Controle
           </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}>
+          <Typography variant="h6" color="text.secondary" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' }, wordBreak: 'break-word' }}>
             Bem-vindo ao seu painel de doações
           </Typography>
         </Box>
-
-        <Grid container spacing={{ xs: 2, sm: 4 }} mb={{ xs: 4, sm: 6 }}>
+        <Grid container spacing={{ xs: 2, sm: 4 }} mb={{ xs: 4, sm: 6 }} alignItems="stretch" direction={{ xs: 'column', md: 'row' }} justifyContent="center">
           <Grid item xs={12} md={4}>
-            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2, mb: { xs: 2, md: 0 } }}>
+            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2, mb: { xs: 2, md: 0 }, width: '100%', maxWidth: 400, textAlign: 'center', mx: 'auto' }}>
               <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.1rem', sm: '1.3rem' } }}>
                 Ações Rápidas
               </Typography>
@@ -59,22 +58,12 @@ export default function DashboardPage() {
               </Box>
             </Paper>
           </Grid>
-
           <Grid item xs={12} md={4}>
-            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2, mb: { xs: 2, md: 0 } }}>
-              <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.1rem', sm: '1.3rem' } }}>
-                Estatísticas
-              </Typography>
-              <ChartStats />
-            </Paper>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2 }}>
+            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2, width: '100%', maxWidth: 400, textAlign: 'center', mx: 'auto' }}>
               <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.1rem', sm: '1.3rem' } }}>
                 Atividade Recente
               </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2, bgcolor: 'success.light', borderRadius: 1 }}>
                   <Box sx={{ width: 8, height: 8, bgcolor: 'success.main', borderRadius: '50%' }} />
                   <Box>
@@ -100,8 +89,22 @@ export default function DashboardPage() {
               </Box>
             </Paper>
           </Grid>
+          {/* Remover bloco Estatísticas daqui */}
         </Grid>
-        <Box mb={{ xs: 3, sm: 4 }} alignItems={"center"} textAlign="center">
+        {/* Estatísticas com largura máxima */}
+        <Grid container justifyContent="center">
+          <Grid item xs={12}>
+            <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 2, width: '100%', maxWidth: 900, mx: 'auto', mb: { xs: 4, md: 6 }, textAlign: 'center' }}>
+              <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1.1rem', sm: '1.3rem' } }}>
+                Estatísticas
+              </Typography>
+              <Box sx={{ width: '100%', overflowX: { xs: 'auto', md: 'visible' } }}>
+                <ChartStats />
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+        <Box mb={{ xs: 3, sm: 4 }} alignItems="center" textAlign="center">
           <Typography variant="h4" component="h2" gutterBottom color="primary" sx={{ fontSize: { xs: '1.8rem', sm: '2.2rem' } }}>
             Visão Geral da Plataforma
           </Typography>
@@ -111,9 +114,9 @@ export default function DashboardPage() {
         <Typography variant="h5" gutterBottom sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' } }}>
           Visão Geral da Plataforma
         </Typography>
-        <Grid container spacing={{ xs: 2, sm: 3 }} justifyContent="center">
+        <Grid container spacing={{ xs: 2, sm: 3 }} justifyContent="center" alignItems="stretch">
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ bgcolor: 'primary.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 } }}>
+            <Card sx={{ bgcolor: 'primary.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 }, width: '100%', maxWidth: 340, mx: 'auto' }}>
               <CardContent>
                 <PeopleIcon sx={{ fontSize: 40, mb: 1 }} />
                 <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>
@@ -126,11 +129,11 @@ export default function DashboardPage() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ bgcolor: 'success.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 } }}>
+            <Card sx={{ bgcolor: 'success.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 }, width: '100%', maxWidth: 340, mx: 'auto' }}>
               <CardContent>
                 <TrendingUpIcon sx={{ fontSize: 40, mb: 1 }} />
                 <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>
-                  Kz$ 950.420
+                  Kz 950.420
                 </Typography>
                 <Typography variant="body2">
                   Total Arrecadado
@@ -139,7 +142,7 @@ export default function DashboardPage() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ bgcolor: 'secondary.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 } }}>
+            <Card sx={{ bgcolor: 'secondary.light', color: 'white', textAlign: 'center', mb: { xs: 2, md: 0 }, width: '100%', maxWidth: 340, mx: 'auto' }}>
               <CardContent>
                 <DashboardIcon sx={{ fontSize: 40, mb: 1 }} />
                 <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>
@@ -152,7 +155,7 @@ export default function DashboardPage() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ bgcolor: 'warning.light', color: 'white', textAlign: 'center' }}>
+            <Card sx={{ bgcolor: 'warning.light', color: 'white', textAlign: 'center', width: '100%', maxWidth: 340, mx: 'auto' }}>
               <CardContent>
                 <SupportIcon sx={{ fontSize: 40, mb: 1 }} />
                 <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>

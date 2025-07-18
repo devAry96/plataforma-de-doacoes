@@ -1,0 +1,56 @@
+webdev/
+├── .env
+├── .gitignore
+├── next.config.js
+├── package.json
+├── tsconfig.json
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   └── logo-social.png
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...nextauth].ts
+│   │   ├── auth/
+│   │   │   ├── signin/
+│   │   │   │   └── page.tsx
+│   │   │   └── signout/
+│   │   │       └── page.tsx
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── DonorForm.tsx
+│   │   ├── DonationCard.tsx
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+│   ├── domain/
+│   │   └── entities/
+│   │       ├── User.ts
+│   │       └── Donation.ts
+│   ├── infra/
+│   │   ├── axios/
+│   │   │   └── api.ts
+│   │   ├── prisma/
+│   │   │   └── prisma.ts
+│   │   └── repositories/
+│   │       ├── PrismaDonationRepository.ts
+│   │       └── PrismaUserRepository.ts
+│   ├── middleware.ts
+│   ├── presentation/
+│   │   └── controllers/
+│   │       └── DonationController.ts
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── ChartStats.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── PlanGuard.tsx
+│   │   │   └── ToastProvider.tsx
+│   │   └── utils/
+│   │       └── auth.ts
+│   └── lib/
+│       └── auth.ts
+└── README.md
